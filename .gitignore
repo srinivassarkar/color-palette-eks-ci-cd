@@ -26,8 +26,8 @@ crash.log
 .kube/
 *.kubeconfig
 config/
-*.yaml
-*.yml
+# *.yaml
+# *.yml
 
 # Docker
 .docker/
