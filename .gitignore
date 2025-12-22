@@ -18,7 +18,7 @@ package-lock.json
 *.tfstate.*
 .terraform.lock.hcl
 crash.log
-*.tfvars
+# *.tfvars
 *.tfvars.json
 *.plan
 
