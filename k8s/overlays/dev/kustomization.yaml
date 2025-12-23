@@ -12,6 +12,6 @@ resources:
   #- ../../base/hpa.yaml  # we are not using hpa for this one but you can uncomment if needed
 
 images:
-  - name: <ECR_REPO_URI>
+  - name: sample-app
     newName: 980664882691.dkr.ecr.us-east-1.amazonaws.com/sample-app
-    newTag:  sample-app
+    newTag:  <COMMIT_SHA>
