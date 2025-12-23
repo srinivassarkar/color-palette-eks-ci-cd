@@ -105,6 +105,4 @@ jobs:
         run: |
           IMAGE_TAG=${{ github.sha }}
           ECR_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/${ECR_REPOSITORY}
-          docker tag $ECR_URI:$IMAGE_TAG $ECR_URI:latest
           docker push $ECR_URI:$IMAGE_TAG
-          docker push $ECR_URI:latest
