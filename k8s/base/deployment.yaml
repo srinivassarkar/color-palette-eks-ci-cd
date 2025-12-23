@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: color-palette-api
-          image: 980664882691.dkr.ecr.us-east-1.amazonaws.com/sample-app
-          imagePullPolicy: Always
+          image: sample-app
+          imagePullPolicy: IfNotPresent #always 
           ports:
             - containerPort: 8080
           env:
