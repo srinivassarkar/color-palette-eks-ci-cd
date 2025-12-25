@@ -55,3 +55,4 @@ Desktop.ini
 *.swo
 *.bak
 *.tmp
+.cache/
