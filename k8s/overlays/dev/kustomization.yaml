@@ -1,12 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 namespace: color-palette-api
-
 resources:
   - ../../base
-
 images:
   - name: sample-app
     newName: 980664882691.dkr.ecr.us-east-1.amazonaws.com/sample-app
-    newTag:   <COMMIT_SHA> #00fc79e46d05195f5d1adcf69b79365720ae7e8c  # Replace <COMMIT_SHA> with latest GitHub SHA that was pushed to ECR.
+    newTag: e869ea6048d3881aa340bf47e6c420790d85c673 #00fc79e46d05195f5d1adcf69b79365720ae7e8c  # Replace <COMMIT_SHA> with latest GitHub SHA that was pushed to ECR.
