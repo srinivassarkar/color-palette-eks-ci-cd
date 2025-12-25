@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: color-palette-api
+  type: LoadBalancer
   ports:
     - name: http
       port: 80
@@ -13,4 +14,3 @@ spec:
     - name: metrics
       port: 9090
       targetPort: 9090
-  type: ClusterIP
