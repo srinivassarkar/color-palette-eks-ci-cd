@@ -1,6 +1,6 @@
 region = "us-east-1"
 
-cluster_name = "my-eks-cluster-v2"
+cluster_name = "my-eks-cluster-v3"
 
 vpc_cidr = "10.0.0.0/16"
 
