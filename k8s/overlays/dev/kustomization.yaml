@@ -8,4 +8,4 @@ resources:
 images:
   - name: sample-app
     newName: 980664882691.dkr.ecr.us-east-1.amazonaws.com/sample-app
-    newTag: 3d2d38abfdb0082ee2709540ada652909caffb5f #00fc79e46d05195f5d1adcf69b79365720ae7e8c  # Replace <COMMIT_SHA> with latest GitHub SHA that was pushed to ECR.
+    newTag: 10536fb472f5b66224738aab4a5f0ad6149f6bb8 #00fc79e46d05195f5d1adcf69b79365720ae7e8c  # Replace <COMMIT_SHA> with latest GitHub SHA that was pushed to ECR.
