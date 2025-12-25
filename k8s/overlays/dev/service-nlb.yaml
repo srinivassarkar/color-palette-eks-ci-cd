@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: color-palette-api-nlb
+  namespace: color-palette-api
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+spec:
+  type: LoadBalancer
+  selector:
+    app: color-palette-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8080

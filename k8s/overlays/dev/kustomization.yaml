@@ -3,6 +3,8 @@ kind: Kustomization
 namespace: color-palette-api
 resources:
   - ../../base
+  - service-nlb.yaml
+  - servicemonitor.yaml
 images:
   - name: sample-app
     newName: 980664882691.dkr.ecr.us-east-1.amazonaws.com/sample-app
