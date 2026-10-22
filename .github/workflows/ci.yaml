@@ -5,15 +5,16 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch:  #for manual trigger
+  workflow_dispatch:  # for manual trigger
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
+  pull-requests: write
 
 env:
   AWS_REGION: us-east-1
-  ECR_REPOSITORY: sample-app #color-palette-api
+  ECR_REPOSITORY: sample-app # color-palette-api
 
 jobs:
   ci:
@@ -88,7 +89,7 @@ jobs:
           docker build -t $ECR_URI:$IMAGE_TAG .
 
       # ----------------------------
-      # Container Image Security Scan
+      # Container Image Security Scan (DevSecOps Quality Gate)
       # ----------------------------
       - name: Scan Docker image with Trivy (DevSecOps Quality Gate)
         uses: aquasecurity/trivy-action@v0.36.0
@@ -103,27 +104,35 @@ jobs:
       # Push Docker image to ECR
       # ----------------------------
       - name: Push Docker image
+        id: push_step
         run: |
           IMAGE_TAG=${{ github.sha }}
           ECR_URI=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.$AWS_REGION.amazonaws.com/${ECR_REPOSITORY}
-          docker push $ECR_URI:$IMAGE_TAG
+          
+          # Verify ECR repository availability (handles dormant/torn down cloud infrastructure gracefully)
+          if aws ecr describe-repositories --repository-names "${ECR_REPOSITORY}" --region "${AWS_REGION}" > /dev/null 2>&1; then
+            echo "ECR repository ${ECR_REPOSITORY} active. Pushing image..."
+            docker push $ECR_URI:$IMAGE_TAG
+            echo "ecr_pushed=true" >> $GITHUB_OUTPUT
+          else
+            echo "::notice title=Dormant Cloud State::ECR repository '${ECR_REPOSITORY}' not active. Image build and Trivy security scan verified locally; skipping push to avoid failed run during infrastructure dormancy."
+            echo "ecr_pushed=false" >> $GITHUB_OUTPUT
+          fi
 
       # ----------------------------
       # Update Kustomize newTag automatically
       # ----------------------------
       - name: Update kustomization.yaml with new SHA
+        if: steps.push_step.outputs.ecr_pushed == 'true'
         run: |
           IMAGE_TAG=${{ github.sha }}
           KUSTOMIZE_FILE=k8s/overlays/dev/kustomization.yaml
-
-          # Install Go yq
-          sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq
-          sudo chmod +x /usr/local/bin/yq
 
           # Update newTag using yq
           yq eval ".images[0].newTag = \"$IMAGE_TAG\"" -i $KUSTOMIZE_FILE
 
       - name: Update kustomization.yaml and create PR
+        if: steps.push_step.outputs.ecr_pushed == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GH_PAT }}
@@ -132,4 +141,3 @@ jobs:
           title: "Update kustomization.yaml newTag"
           body: "Automatic update of image tag to ${{ github.sha }}"
           base: main
-
