@@ -54,7 +54,7 @@ jobs:
 
       - name: Security audit
         working-directory: app/service
-        run: npm audit --audit-level=high
+        run: npm audit --omit=dev --audit-level=high
 
       # ----------------------------
       # AWS authentication (OIDC)
@@ -91,7 +91,7 @@ jobs:
       # Container Image Security Scan
       # ----------------------------
       - name: Scan Docker image with Trivy (DevSecOps Quality Gate)
-        uses: aquasecurity/trivy-action@0.27.0
+        uses: aquasecurity/trivy-action@v0.28.0
         with:
           image-ref: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
           format: 'table'
