@@ -56,3 +56,6 @@ Desktop.ini
 *.bak
 *.tmp
 .cache/
+# Kubernetes Secrets (prevent committing plaintext secrets)
+**/secrets.yaml
+!**/secrets.example.yaml

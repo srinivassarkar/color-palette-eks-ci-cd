@@ -3,6 +3,8 @@ kind: Service
 metadata:
   name: color-palette-api
   namespace: color-palette-api
+  labels:
+    app: color-palette-api
 spec:
   selector:
     app: color-palette-api
@@ -11,6 +13,3 @@ spec:
     - name: http
       port: 80
       targetPort: 8080
-    - name: metrics
-      port: 9090
-      targetPort: 9090

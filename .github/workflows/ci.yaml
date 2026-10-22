@@ -90,14 +90,14 @@ jobs:
       # ----------------------------
       # Container Image Security Scan
       # ----------------------------
-      - name: Scan Docker image with Trivy
+      - name: Scan Docker image with Trivy (DevSecOps Quality Gate)
         uses: aquasecurity/trivy-action@0.27.0
         with:
           image-ref: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
           format: 'table'
-          exit-code: 0 #'1'
+          exit-code: 1
           vuln-type: os,library
-          severity:  'HIGH' #'CRITICAL,HIGH' # TODO: Re-enable Trivy with stricter gating after dependency cleanup
+          severity: 'CRITICAL'
 
       # ----------------------------
       # Push Docker image to ECR

@@ -5,6 +5,6 @@ resources:
   - namespace.yaml
   - deployment.yaml
   - service.yaml
+  - service-metrics.yaml
   - configmap.yaml
-  - secrets.yaml
-  # - hpa.yaml
+  - hpa.yaml

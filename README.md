@@ -443,19 +443,28 @@ This project reflects real-world debugging, not idealized tutorials.
 
 ---
 
-## Design Decisions & Trade-offs
+## Design Decisions & Architectural Trade-offs
 
-- **LoadBalancer Service** used for simplicity
-  → In production, ALB + Ingress would be preferred
+- **Secrets Management & Zero Plaintext in Git:**
+  - Plaintext kind: Secret manifests are strictly excluded from version control.
+  - A reference template is provided at k8s/base/secrets.example.yaml, and .gitignore prevents accidental secret commits.
+  - The Pod deployment configures optional: true on secret references, allowing zero-downtime bootstrap before secrets are injected.
+  - Enterprise migration path: External Secrets Operator (ESO) syncing directly from AWS Secrets Manager or HashiCorp Vault.
 
-- **Secrets in manifests (demo)**
-  → Explicitly documented replacement with External Secrets
+- **Network Isolation & Metrics Decoupling:**
+  - Application HTTP traffic is exposed via 	ype: LoadBalancer strictly on port 80.
+  - Telemetry and Prometheus metrics (port 9090) are isolated into a dedicated internal ClusterIP Service (color-palette-api-metrics), ensuring operational data is never routed over public load balancer listeners.
 
-- **Public EKS endpoint enabled**
-  → Documented toggle for private-only clusters
+- **Horizontal Pod Autoscaling (HPA):**
+  - Active in base manifests (utoscaling/v2, min 2, max 5 replicas, target 60% CPU utilization). Requires Kubernetes metrics-server on the EKS cluster.
 
-- **HPA included but disabled**
-  → Demonstrates readiness without forcing metrics dependency
+- **DevSecOps Gating in CI:**
+  - Semgrep SAST scans application source code on every push.
+  - Trivy container scanning inspects the final container image and enforces a hard quality gate (exit-code: 1 on CRITICAL severity), blocking vulnerable images from pushing to Amazon ECR.
+
+- **Progressive Delivery & Canary Roadmap:**
+  - Current state enforces immutable GitOps deployment via automated Kustomize image SHA pull requests and ArgoCD self-healing.
+  - Advanced canary traffic shaping via Argo Rollouts and AWS Application Load Balancer (ALB) weighted target groups is scheduled as an operational extension.
 
 ---
 

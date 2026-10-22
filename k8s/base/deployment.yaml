@@ -29,6 +29,7 @@ spec:
                 secretKeyRef:
                   name: color-palette-secrets
                   key: metricsToken
+                  optional: true
           resources:
             limits:
               cpu: "500m"
