@@ -124,9 +124,9 @@ backend "s3" {
 
 **Benefits:**
 
-- ✔ Prevents state loss
-- ✔ Enables team collaboration
-- ✔ Encrypted at rest
+- Prevents state loss
+- Enables team collaboration
+- Encrypted at rest
 
 ## Prerequisites
 
@@ -152,7 +152,7 @@ public_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24"]
 private_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
 ```
 
-👉 Modify this file to create new environments (dev/staging/prod).
+Note: Modify this file to create new environments (dev/staging/prod).
 
 ## How to Deploy
 
@@ -165,7 +165,7 @@ terraform plan
 terraform apply -var-file="terraform.tfvars"
 ```
 
-⏱️ Apply takes 10–15 minutes due to EKS provisioning.
+Note: Apply takes 10–15 minutes due to EKS provisioning.
 
 ## Outputs
 

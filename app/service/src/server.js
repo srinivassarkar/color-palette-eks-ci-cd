@@ -111,8 +111,8 @@ function unsafeColorValidation(input) {
 // =========================
 function generateHTML(palette, version) {
   const versionInfo = version === 'v2'
-    ? { title: 'Cool Palette', emoji: '❄️', theme: 'Cool tones (Blues & Greens)' }
-    : { title: 'Warm Palette', emoji: '🔥', theme: 'Warm tones (Reds & Oranges)' };
+    ? { title: 'Cool Palette', theme: 'Cool tones (Blues & Greens)' }
+    : { title: 'Warm Palette', theme: 'Warm tones (Reds & Oranges)' };
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -316,9 +316,9 @@ function generateHTML(palette, version) {
     </div>
     
     <div class="actions">
-      <button class="btn btn-primary" onclick="location.reload()">🎨 Generate New Palette</button>
-      <a href="/api" class="btn btn-secondary">📊 View JSON API</a>
-      <a href="/metrics" class="btn btn-secondary">📈 Metrics</a>
+      <button class="btn btn-primary" onclick="location.reload()">Generate New Palette</button>
+      <a href="/api" class="btn btn-secondary">View JSON API</a>
+      <a href="/metrics" class="btn btn-secondary">Metrics</a>
     </div>
     
     <div class="footer">
@@ -519,12 +519,12 @@ const connections = new Set();
 
 if (require.main === module) {
   server = app.listen(PORT, '0.0.0.0', () => {
-    console.log(`🎨 Color Palette API ${VERSION} running on port ${PORT}`);
-    console.log(`📊 Metrics available at http://localhost:${PORT}/metrics`);
-    console.log(`💚 Health check at http://localhost:${PORT}/health`);
-    console.log(`🌐 Visual UI at http://localhost:${PORT}/`);
-    console.log(`📡 JSON API at http://localhost:${PORT}/api`);
-    console.log(`🔧 Environment: ${process.env.NODE_ENV || 'test'}`);
+    console.log(`Color Palette API ${VERSION} running on port ${PORT}`);
+    console.log(`Metrics available at http://localhost:${PORT}/metrics`);
+    console.log(`Health check at http://localhost:${PORT}/health`);
+    console.log(`Visual UI at http://localhost:${PORT}/`);
+    console.log(`JSON API at http://localhost:${PORT}/api`);
+    console.log(`Environment: ${process.env.NODE_ENV || 'test'}`);
   });
 
   // Track connections for graceful shutdown

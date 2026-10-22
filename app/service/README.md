@@ -1,4 +1,4 @@
-# 🎨 Color Palette Generator API
+# Color Palette Generator API
 
 > A production-ready Express.js API for generating beautiful color palettes with built-in monitoring, security, and DevSecOps best practices.
 
@@ -6,16 +6,16 @@
 ![Node](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## ✨ Features
+## Features
 
-- 🎨 **Dynamic Color Generation** - Generate warm or cool color palettes based on version
-- 📊 **Prometheus Metrics** - Built-in monitoring and observability
-- 🔒 **Security First** - Rate limiting, input validation, and CORS support
-- 🚀 **Production Ready** - Health checks, graceful shutdown, and error handling
-- 🎯 **Canary Deployments** - Visual version differentiation (v1: warm colors, v2: cool colors)
-- 💻 **Beautiful UI** - Interactive web interface with copy-to-clipboard functionality
+- **Dynamic Color Generation** - Generate warm or cool color palettes based on version
+- **Prometheus Metrics** - Built-in monitoring and observability
+- **Security First** - Rate limiting, input validation, and CORS support
+- **Production Ready** - Health checks, graceful shutdown, and error handling
+- **Canary Deployments** - Visual version differentiation (v1: warm colors, v2: cool colors)
+- **Beautiful UI** - Interactive web interface with copy-to-clipboard functionality
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -48,7 +48,7 @@ docker build -t color-palette-api .
 docker run -p 8080:8080 color-palette-api
 ```
 
-## 📖 API Documentation
+## API Documentation
 
 ### Endpoints
 
@@ -160,7 +160,7 @@ Simulates an error for testing rollback scenarios.
 
 **Response:** 500 error with intentional failure message
 
-## 🛡️ Security Features
+## Security Features
 
 ### Rate Limiting
 - **Limit:** 100 requests per minute per IP
@@ -177,7 +177,7 @@ Simulates an error for testing rollback scenarios.
 - Enabled by default for cross-origin requests
 - Configurable headers for specific domains
 
-## 📊 Monitoring & Observability
+## Monitoring & Observability
 
 ### Prometheus Integration
 
@@ -205,7 +205,7 @@ Configure your orchestrator to use:
 - **Liveness probe:** `GET /health`
 - **Readiness probe:** `GET /ready`
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -220,15 +220,15 @@ npm run test:watch
 
 ### Test Coverage
 
-- ✅ Unit tests for all endpoints
-- ✅ Integration tests for request lifecycle
-- ✅ Security validation tests
-- ✅ Rate limiting verification
-- ✅ CORS functionality
-- ✅ Error handling scenarios
-- ✅ Performance benchmarks
+- Unit tests for all endpoints
+- Integration tests for request lifecycle
+- Security validation tests
+- Rate limiting verification
+- CORS functionality
+- Error handling scenarios
+- Performance benchmarks
 
-## 🔧 Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -244,7 +244,7 @@ npm run test:watch
 PORT=3000 APP_VERSION=v2 npm start
 ```
 
-## 🎯 DevSecOps Features
+## DevSecOps Features
 
 ### Canary Deployments
 - **v1 (warm):** Red, orange, yellow color palettes
@@ -261,7 +261,7 @@ PORT=3000 APP_VERSION=v2 npm start
 - Error logging with stack traces (development mode)
 - Version information in all logs
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 app/service/
@@ -274,7 +274,7 @@ app/service/
 └── README.md
 ```
 
-## 🧪 Security Testing
+## Security Testing
 
 ### Testing Injection Vulnerabilities
 

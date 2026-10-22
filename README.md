@@ -51,14 +51,14 @@ This project follows a **clean separation of concerns**:
 ┌──────────────────────────────────────────┐
 │ GitHub Actions (CI Pipeline)              │
 │                                          │
-│ ✓ Tests                                  │
-│ ✓ SAST (Semgrep)                          │
-│ ✓ Dependency Audit                        │
-│ ✓ Docker Build                            │
-│ ✓ Image Scan (Trivy)                      │
-│ ✓ Push to ECR (immutable tag)             │
-│ ✓ Update Kustomize image SHA              │
-│ ✓ Create Pull Request                     │
+│ + Tests                                  │
+│ + SAST (Semgrep)                          │
+│ + Dependency Audit                        │
+│ + Docker Build                            │
+│ + Image Scan (Trivy)                      │
+│ + Push to ECR (immutable tag)             │
+│ + Update Kustomize image SHA              │
+│ + Create Pull Request                     │
 └────────┬─────────────────────────────────┘
          │
          ▼
@@ -70,10 +70,10 @@ This project follows a **clean separation of concerns**:
 ┌──────────────────────────────────────────┐
 │ Argo CD                                  │
 │                                          │
-│ ✓ Watches Git repo                        │
-│ ✓ Auto-sync enabled                       │
-│ ✓ Drift detection                         │
-│ ✓ Self-healing                            │
+│ + Watches Git repo                        │
+│ + Auto-sync enabled                       │
+│ + Drift detection                         │
+│ + Self-healing                            │
 └────────┬─────────────────────────────────┘
          │
          ▼
@@ -169,7 +169,7 @@ This project follows a **clean separation of concerns**:
 - OIDC provider for secure authentication
 - ECR repository with immutable tags
 
-📄 Full infra details: [`terraform/README.md`](./terraform/README.md)
+Full infrastructure details: [`terraform/README.md`](./terraform/README.md)
 
 ---
 
@@ -177,14 +177,14 @@ This project follows a **clean separation of concerns**:
 
 This project intentionally avoids insecure shortcuts.
 
-- ✅ **No long-lived AWS credentials**
-- ✅ GitHub Actions uses **OIDC → IAM role assumption**
-- ✅ EKS uses **IAM Roles for Service Accounts (IRSA)**
-- ✅ ECR repositories:
+- **No long-lived AWS credentials**
+- GitHub Actions uses **OIDC → IAM role assumption**
+- EKS uses **IAM Roles for Service Accounts (IRSA)**
+- ECR repositories:
   - Encrypted
   - Immutable tags
-- ✅ Least-privilege IAM policies
-- ✅ Git is the **single source of truth**
+- Least-privilege IAM policies
+- Git is the **single source of truth**
 
 > In production, secrets should be managed using **External Secrets / AWS Secrets Manager**.
 > Kubernetes `Secret` manifests here are placeholders for demonstration.
